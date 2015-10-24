@@ -476,13 +476,16 @@ var _interface = {
       input: null
     },
     air: {
-      complete: false
+      complete: false,
+      input: null
     },
     water: {
-      complete: false
+      complete: false,
+      input: null
     },
     earth: {
-      complete: false
+      complete: false,
+      input: null
     }
   }
 };
