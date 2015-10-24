@@ -8,8 +8,16 @@ var SectionFire = React.createClass({
   },
 
   componentDidUpdate(prevProps) {
-    if (this.props.interface.active == 'fire' && prevProps.interface.active != 'fire') {
+    if (!this.refs.input) {
+      return;
+    }
+
+    if (this.props.interface.active === 'fire' && prevProps.interface.active !== 'fire') {
       this.refs.input.getDOMNode().focus();
+    }
+
+    if (this.props.interface.error === 'fire' && prevProps.interface.error !== 'fire') {
+      this.refs.input.getDOMNode().select();
     }
   },
 

@@ -137,6 +137,7 @@ module.exports = Section;
 
 var React = require('react');
 var Section = require('./Section.jsx');
+var InterfaceStore = require('./stores/InterfaceStore');
 
 var SectionAir = React.createClass({
   displayName: 'SectionAir',
@@ -145,22 +146,78 @@ var SectionAir = React.createClass({
     'interface': React.PropTypes.object
   },
 
+  componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (!this.refs.input) {
+      return;
+    }
+
+    if (this.props['interface'].active === 'air' && prevProps['interface'].active !== 'air') {
+      this.refs.input.getDOMNode().focus();
+    }
+
+    if (this.props['interface'].error === 'air' && prevProps['interface'].error !== 'air') {
+      this.refs.input.getDOMNode().select();
+    }
+  },
+
+  isActive: function isActive() {
+    return this.props['interface'].active === 'air';
+  },
+
+  verify: function verify() {
+    if (this.props['interface'].sections.air.input === 'air') {
+      return true;
+    } else {
+      InterfaceStore.setError('air');
+      return false;
+    }
+  },
+
+  setComplete: function setComplete(value) {
+    InterfaceStore.setComplete('air', value);
+  },
+
+  handleChange: function handleChange(e) {
+    InterfaceStore.setInput('air', this.refs.input.getDOMNode().value);
+  },
+
+  handleKeyDown: function handleKeyDown(e) {
+    if (e.keyCode === 13 && this.verify()) {
+      this.setComplete(true);
+    }
+  },
+
   render: function render() {
     return React.createElement(
       Section,
       { type: 'air', bar: true, up: true, 'interface': this.props['interface'] },
-      'air'
+      React.createElement(
+        'div',
+        { className: 'section__contents__header' },
+        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+      ),
+      React.createElement(
+        'div',
+        { className: 'section__contents__input' + (this.props['interface'].error === 'air' ? ' section__contents__input--error' : '') },
+        React.createElement('input', {
+          type: 'text',
+          value: this.props['interface'].sections.air.input,
+          ref: 'input',
+          onKeyDown: this.handleKeyDown,
+          onChange: this.handleChange })
+      )
     );
   }
 });
 
 module.exports = SectionAir;
 
-},{"./Section.jsx":2,"react":184}],4:[function(require,module,exports){
+},{"./Section.jsx":2,"./stores/InterfaceStore":8,"react":184}],4:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var Section = require('./Section.jsx');
+var InterfaceStore = require('./stores/InterfaceStore');
 
 var SectionEarth = React.createClass({
   displayName: 'SectionEarth',
@@ -169,18 +226,73 @@ var SectionEarth = React.createClass({
     'interface': React.PropTypes.object
   },
 
+  componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (!this.refs.input) {
+      return;
+    }
+
+    if (this.props['interface'].active === 'earth' && prevProps['interface'].active !== 'earth') {
+      this.refs.input.getDOMNode().focus();
+    }
+
+    if (this.props['interface'].error === 'earth' && prevProps['interface'].error !== 'earth') {
+      this.refs.input.getDOMNode().select();
+    }
+  },
+
+  isActive: function isActive() {
+    return this.props['interface'].active === 'earth';
+  },
+
+  verify: function verify() {
+    if (this.props['interface'].sections.earth.input === 'earth') {
+      return true;
+    } else {
+      InterfaceStore.setError('earth');
+      return false;
+    }
+  },
+
+  setComplete: function setComplete(value) {
+    InterfaceStore.setComplete('earth', value);
+  },
+
+  handleChange: function handleChange(e) {
+    InterfaceStore.setInput('earth', this.refs.input.getDOMNode().value);
+  },
+
+  handleKeyDown: function handleKeyDown(e) {
+    if (e.keyCode === 13 && this.verify()) {
+      this.setComplete(true);
+    }
+  },
+
   render: function render() {
     return React.createElement(
       Section,
       { type: 'earth', bar: true, up: false, 'interface': this.props['interface'] },
-      'earth'
+      React.createElement(
+        'div',
+        { className: 'section__contents__header' },
+        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+      ),
+      React.createElement(
+        'div',
+        { className: 'section__contents__input' + (this.props['interface'].error === 'earth' ? ' section__contents__input--error' : '') },
+        React.createElement('input', {
+          type: 'text',
+          value: this.props['interface'].sections.earth.input,
+          ref: 'input',
+          onKeyDown: this.handleKeyDown,
+          onChange: this.handleChange })
+      )
     );
   }
 });
 
 module.exports = SectionEarth;
 
-},{"./Section.jsx":2,"react":184}],5:[function(require,module,exports){
+},{"./Section.jsx":2,"./stores/InterfaceStore":8,"react":184}],5:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -195,8 +307,16 @@ var SectionFire = React.createClass({
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps) {
-    if (this.props['interface'].active == 'fire' && prevProps['interface'].active != 'fire') {
+    if (!this.refs.input) {
+      return;
+    }
+
+    if (this.props['interface'].active === 'fire' && prevProps['interface'].active !== 'fire') {
       this.refs.input.getDOMNode().focus();
+    }
+
+    if (this.props['interface'].error === 'fire' && prevProps['interface'].error !== 'fire') {
+      this.refs.input.getDOMNode().select();
     }
   },
 
@@ -257,6 +377,7 @@ module.exports = SectionFire;
 
 var React = require('react');
 var Section = require('./Section.jsx');
+var InterfaceStore = require('./stores/InterfaceStore');
 
 var SectionWater = React.createClass({
   displayName: 'SectionWater',
@@ -265,18 +386,73 @@ var SectionWater = React.createClass({
     'interface': React.PropTypes.object
   },
 
+  componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (!this.refs.input) {
+      return;
+    }
+
+    if (this.props['interface'].active === 'water' && prevProps['interface'].active !== 'water') {
+      this.refs.input.getDOMNode().focus();
+    }
+
+    if (this.props['interface'].error === 'water' && prevProps['interface'].error !== 'water') {
+      this.refs.input.getDOMNode().select();
+    }
+  },
+
+  isActive: function isActive() {
+    return this.props['interface'].active === 'water';
+  },
+
+  verify: function verify() {
+    if (this.props['interface'].sections.water.input === 'water') {
+      return true;
+    } else {
+      InterfaceStore.setError('water');
+      return false;
+    }
+  },
+
+  setComplete: function setComplete(value) {
+    InterfaceStore.setComplete('water', value);
+  },
+
+  handleChange: function handleChange(e) {
+    InterfaceStore.setInput('water', this.refs.input.getDOMNode().value);
+  },
+
+  handleKeyDown: function handleKeyDown(e) {
+    if (e.keyCode === 13 && this.verify()) {
+      this.setComplete(true);
+    }
+  },
+
   render: function render() {
     return React.createElement(
       Section,
       { type: 'water', bar: false, up: false, 'interface': this.props['interface'] },
-      'water'
+      React.createElement(
+        'div',
+        { className: 'section__contents__header' },
+        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+      ),
+      React.createElement(
+        'div',
+        { className: 'section__contents__input' + (this.props['interface'].error === 'water' ? ' section__contents__input--error' : '') },
+        React.createElement('input', {
+          type: 'text',
+          value: this.props['interface'].sections.water.input,
+          ref: 'input',
+          onKeyDown: this.handleKeyDown,
+          onChange: this.handleChange })
+      )
     );
   }
 });
 
 module.exports = SectionWater;
 
-},{"./Section.jsx":2,"react":184}],7:[function(require,module,exports){
+},{"./Section.jsx":2,"./stores/InterfaceStore":8,"react":184}],7:[function(require,module,exports){
 'use strict';
 
 var React = require('react'),

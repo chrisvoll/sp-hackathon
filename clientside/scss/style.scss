@@ -213,6 +213,8 @@ html, body, #app {
         font-size: 18px;
         color: #FFF;
         outline: none;
+        box-shadow: 0 0 0 0 #D50F0C;
+        transition: 0.2s;
       }
 
       &--error {
