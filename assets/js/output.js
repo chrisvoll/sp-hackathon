@@ -102,7 +102,7 @@ var Section = React.createClass({
       React.createElement(
         'div',
         { className: 'section__contents__success__header' },
-        'Success!'
+        'Complete'
       )
     );
   },
@@ -194,7 +194,7 @@ var SectionAir = React.createClass({
       React.createElement(
         'div',
         { className: 'section__contents__header' },
-        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+        'Lrg nabgure zrffntr rapelcgrq.'
       ),
       React.createElement(
         'div',
@@ -274,7 +274,7 @@ var SectionEarth = React.createClass({
       React.createElement(
         'div',
         { className: 'section__contents__header' },
-        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+        'Naq bar ynfg bar sbe jngre'
       ),
       React.createElement(
         'div',
@@ -354,7 +354,7 @@ var SectionFire = React.createClass({
       React.createElement(
         'div',
         { className: 'section__contents__header' },
-        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+        'N uvag jbhyq tb va guvf fcbg'
       ),
       React.createElement(
         'div',
@@ -434,7 +434,7 @@ var SectionWater = React.createClass({
       React.createElement(
         'div',
         { className: 'section__contents__header' },
-        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+        'Vg’f abg ernyyl uneq gb qrpelcg'
       ),
       React.createElement(
         'div',

@@ -51,7 +51,7 @@ var SectionFire = React.createClass({
   render() {
     return <Section type="fire" bar={false} up={true} interface={this.props.interface}>
       <div className="section__contents__header">
-        Inet hdbtiwxcv xcid iwxh qdm id egdrtts.
+        N uvag jbhyq tb va guvf fcbg
       </div>
       <div className={'section__contents__input' + (this.props.interface.error === 'fire' ? ' section__contents__input--error' : '')}>
         <input

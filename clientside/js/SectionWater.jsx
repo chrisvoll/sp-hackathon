@@ -51,7 +51,7 @@ var SectionWater = React.createClass({
   render() {
     return <Section type="water" bar={false} up={false} interface={this.props.interface}>
       <div className="section__contents__header">
-        Inet hdbtiwxcv xcid iwxh qdm id egdrtts.
+        Vg’f abg ernyyl uneq gb qrpelcg
       </div>
       <div className={'section__contents__input' + (this.props.interface.error === 'water' ? ' section__contents__input--error' : '')}>
         <input

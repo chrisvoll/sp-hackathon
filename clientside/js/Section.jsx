@@ -44,7 +44,7 @@ var Section = React.createClass({
 
   renderSuccess() {
     return <div className="section__contents__success">
-      <div className="section__contents__success__header">Success!</div>
+      <div className="section__contents__success__header">Complete</div>
     </div>;
   },
 

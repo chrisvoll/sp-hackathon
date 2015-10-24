@@ -51,7 +51,7 @@ var SectionAir = React.createClass({
   render() {
     return <Section type="air" bar={true} up={true} interface={this.props.interface}>
       <div className="section__contents__header">
-        Inet hdbtiwxcv xcid iwxh qdm id egdrtts.
+        Lrg nabgure zrffntr rapelcgrq.
       </div>
       <div className={'section__contents__input' + (this.props.interface.error === 'air' ? ' section__contents__input--error' : '')}>
         <input

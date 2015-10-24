@@ -51,7 +51,7 @@ var SectionEarth = React.createClass({
   render() {
     return <Section type="earth" bar={true} up={false} interface={this.props.interface}>
       <div className="section__contents__header">
-        Inet hdbtiwxcv xcid iwxh qdm id egdrtts.
+        Naq bar ynfg bar sbe jngre
       </div>
       <div className={'section__contents__input' + (this.props.interface.error === 'earth' ? ' section__contents__input--error' : '')}>
         <input
