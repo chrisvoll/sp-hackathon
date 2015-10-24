@@ -117,6 +117,7 @@ html, body, #app {
     justify-content: center;
     transition: 0.2s;
     cursor: pointer;
+    width: 100%;
   }
 
   &__icon {
@@ -194,5 +195,42 @@ html, body, #app {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    flex-direction: column;
+
+    &__header {
+      text-align: center;
+      font-size: 22px;
+      margin: 0 0 20px;
+    }
+
+    &__input {
+      input {
+        width: 300px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        border: 0;
+        padding: 20px;
+        font-size: 18px;
+        color: #FFF;
+        outline: none;
+      }
+
+      &--error {
+        input {
+          box-shadow: 0 0 0 3px #D50F0C;
+        }
+      }
+    }
+
+    &__success {
+      &__header {
+        font-size: 22px;
+        margin: 0 0 20px;
+      }
+
+      &__continue {
+
+      }
+    }
   }
 }

@@ -9,13 +9,12 @@ var SectionEarth = require('./SectionEarth.jsx');
 var App = React.createClass({
   getInitialState() {
     return {
-      interface: {}
+      interface: InterfaceStore.getData()
     };
   },
 
   componentDidMount() {
     InterfaceStore.server.on('update', this.setStateAtomFromStores);
-    this.setStateAtomFromStores();
   },
 
   setStateAtomFromStores() {

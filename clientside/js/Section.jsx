@@ -38,6 +38,16 @@ var Section = React.createClass({
     }
   },
 
+  isCompleted() {
+    return this.props.interface.sections[this.props.type].complete;
+  },
+
+  renderSuccess() {
+    return <div className="section__contents__success">
+      <div className="section__contents__success__header">Success!</div>
+    </div>;
+  },
+
   render() {
     return <div className={'section section--' + this.props.type + this.getActiveClass()} onClick={this.setActive}>
 
@@ -52,7 +62,7 @@ var Section = React.createClass({
       </div>
 
       <div className="section__contents">
-        {this.props.children}
+        {this.isCompleted() ? this.renderSuccess() : this.props.children}
       </div>
     </div>
   }

@@ -14,13 +14,12 @@ var App = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      'interface': {}
+      'interface': InterfaceStore.getData()
     };
   },
 
   componentDidMount: function componentDidMount() {
     InterfaceStore.server.on('update', this.setStateAtomFromStores);
-    this.setStateAtomFromStores();
   },
 
   setStateAtomFromStores: function setStateAtomFromStores() {
@@ -92,6 +91,22 @@ var Section = React.createClass({
     }
   },
 
+  isCompleted: function isCompleted() {
+    return this.props['interface'].sections[this.props.type].complete;
+  },
+
+  renderSuccess: function renderSuccess() {
+    return React.createElement(
+      'div',
+      { className: 'section__contents__success' },
+      React.createElement(
+        'div',
+        { className: 'section__contents__success__header' },
+        'Success!'
+      )
+    );
+  },
+
   render: function render() {
     return React.createElement(
       'div',
@@ -109,7 +124,7 @@ var Section = React.createClass({
       React.createElement(
         'div',
         { className: 'section__contents' },
-        this.props.children
+        this.isCompleted() ? this.renderSuccess() : this.props.children
       )
     );
   }
@@ -170,6 +185,7 @@ module.exports = SectionEarth;
 
 var React = require('react');
 var Section = require('./Section.jsx');
+var InterfaceStore = require('./stores/InterfaceStore');
 
 var SectionFire = React.createClass({
   displayName: 'SectionFire',
@@ -178,18 +194,67 @@ var SectionFire = React.createClass({
     'interface': React.PropTypes.object
   },
 
+  componentDidUpdate: function componentDidUpdate(prevProps) {
+    console.log(this.props['interface'].active, prevProps['interface'].active);
+    if (this.props['interface'].active == 'fire' && prevProps['interface'].active != 'fire') {
+      console.log('can has');
+      this.refs.input.getDOMNode().focus();
+    }
+  },
+
+  isActive: function isActive() {
+    return this.props['interface'].active === 'fire';
+  },
+
+  verify: function verify() {
+    if (this.props['interface'].sections.fire.input === 'fire') {
+      return true;
+    } else {
+      InterfaceStore.setError('fire');
+      return false;
+    }
+  },
+
+  setComplete: function setComplete(value) {
+    InterfaceStore.setComplete('fire', value);
+  },
+
+  handleChange: function handleChange(e) {
+    InterfaceStore.setInput('fire', this.refs.input.getDOMNode().value);
+  },
+
+  handleKeyDown: function handleKeyDown(e) {
+    if (e.keyCode === 13 && this.verify()) {
+      this.setComplete(true);
+    }
+  },
+
   render: function render() {
     return React.createElement(
       Section,
       { type: 'fire', bar: false, up: true, 'interface': this.props['interface'] },
-      'fire'
+      React.createElement(
+        'div',
+        { className: 'section__contents__header' },
+        'Inet hdbtiwxcv xcid iwxh qdm id egdrtts.'
+      ),
+      React.createElement(
+        'div',
+        { className: 'section__contents__input' + (this.props['interface'].error === 'fire' ? ' section__contents__input--error' : '') },
+        React.createElement('input', {
+          type: 'text',
+          value: this.props['interface'].sections.fire.input,
+          ref: 'input',
+          onKeyDown: this.handleKeyDown,
+          onChange: this.handleChange })
+      )
     );
   }
 });
 
 module.exports = SectionFire;
 
-},{"./Section.jsx":2,"react":183}],6:[function(require,module,exports){
+},{"./Section.jsx":2,"./stores/InterfaceStore":8,"react":183}],6:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
@@ -230,9 +295,11 @@ var eventemitter2 = require('eventemitter2').EventEmitter2;
 
 var _interface = {
   active: null,
+  error: null,
   sections: {
     fire: {
-      complete: false
+      complete: false,
+      input: null
     },
     air: {
       complete: false
@@ -262,8 +329,30 @@ var InterfaceStore = {
     this.update();
   },
 
+  setQuietly: function setQuietly(key, value) {
+    _interface[key] = value;
+  },
+
+  setSection: function setSection(type, key, value) {
+    _interface.sections[type][key] = value;
+    this.update();
+  },
+
   setActive: function setActive(value) {
     this.set('active', value);
+  },
+
+  setError: function setError(value) {
+    this.set('error', value);
+  },
+
+  setInput: function setInput(type, value) {
+    this.setSection(type, 'input', value);
+  },
+
+  setComplete: function setComplete(type, value) {
+    this.setQuietly('error', null);
+    this.setSection(type, 'complete', value);
   }
 };
 
