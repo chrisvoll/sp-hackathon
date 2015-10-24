@@ -1,0 +1,198 @@
+$fire: #E25712;
+$air: #00D8E0;
+$water: #1663CC;
+$earth: #6E8C1E;
+
+body {
+  font-family: "Proxima Nova", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+html, body, #app {
+  width: 100%;
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  height: 100%;
+}
+
+.section {
+  flex: 0 0 25%;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &--active {
+    flex: 0 0 100%;
+    cursor: default;
+
+    .section__icon-container {
+      opacity: 0.5;
+      flex: 0 0 10%;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .section__icon {
+      transform: scale(0.4) !important;
+    }
+
+    .section__contents {
+      flex: 0 0 90%;
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  &--inactive {
+    flex: 0 0 0%;
+    pointer-events: none;
+
+    .section__icon {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    .section__icon {
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    .section__icon {
+      transform: scale(1.2);
+    }
+  }
+
+  &--fire {
+    background: $fire;
+
+    .section__icon__triangle:after {
+      border-top-color: $fire;
+      border-bottom-color: $fire;
+    }
+  }
+
+  &--air {
+    background: $air;
+
+    .section__icon__triangle:after {
+      border-top-color: $air;
+      border-bottom-color: $air;
+    }
+  }
+
+  &--water {
+    background: $water;
+
+    .section__icon__triangle:after {
+      border-top-color: $water;
+      border-bottom-color: $water;
+    }
+  }
+
+  &--earth {
+    background: $earth;
+
+    .section__icon__triangle:after {
+      border-top-color: $earth;
+      border-bottom-color: $earth;
+    }
+  }
+
+  &__icon-container {
+    display: flex;
+    flex: 0 0 100%;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    cursor: pointer;
+  }
+
+  &__icon {
+    transform: scale(1);
+    transition: 0.2s;
+    position: relative;
+
+    &__triangle {
+      &--up {
+        width: 0; 
+        height: 0; 
+        border-left: 70px solid transparent;
+        border-right: 70px solid transparent;
+        border-bottom: 120px solid #FFF;
+        position: relative;
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: 24px;
+          left: -50px;
+          width: 0; 
+          height: 0; 
+          border-left: 50px solid transparent;
+          border-right: 50px solid transparent;
+          border-bottom: 85px solid #000;
+        }
+      }
+
+      &--down {
+        width: 0; 
+        height: 0; 
+        border-left: 70px solid transparent;
+        border-right: 70px solid transparent;
+        border-top: 120px solid #FFF;
+        position: relative;
+
+        &:after {
+          content: "";
+          position: absolute;
+          top: -108px;
+          left: -50px;
+          width: 0; 
+          height: 0; 
+          border-left: 50px solid transparent;
+          border-right: 50px solid transparent;
+          border-top: 85px solid #000;
+        }
+      }
+    }
+
+    &__bar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 12px;
+      background: #FFF;
+
+      .section__icon__triangle--up + & {
+        top: 40%;
+      }
+
+      .section__icon__triangle--down + & {
+        top: 50%;
+      }
+    }
+  } // &__icon
+
+  &__contents {
+    transition: 0.2s;
+    flex: 0 0 0%;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
