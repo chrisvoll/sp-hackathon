@@ -8,9 +8,7 @@ var SectionFire = React.createClass({
   },
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.interface.active, prevProps.interface.active)
     if (this.props.interface.active == 'fire' && prevProps.interface.active != 'fire') {
-      console.log('can has');
       this.refs.input.getDOMNode().focus();
     }
   },

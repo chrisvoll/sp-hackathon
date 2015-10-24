@@ -6,21 +6,21 @@ var SectionAir = require('./SectionAir.jsx');
 var SectionWater = require('./SectionWater.jsx');
 var SectionEarth = require('./SectionEarth.jsx');
 
+var _ = require('lodash');
+
 var App = React.createClass({
   getInitialState() {
     return {
-      interface: InterfaceStore.getData()
+      interface: _.assign({}, InterfaceStore.getData())
     };
   },
 
   componentDidMount() {
-    InterfaceStore.server.on('update', this.setStateAtomFromStores);
+    InterfaceStore.server.on('update', this.updateInterface);
   },
 
-  setStateAtomFromStores() {
-    this.setState({
-      interface: InterfaceStore.getData()
-    });
+  updateInterface(interfaceAtom) {
+    this.setState({ interface: _.assign({}, interfaceAtom) });
   },
 
   render() {
