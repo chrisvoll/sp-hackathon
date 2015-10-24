@@ -11,7 +11,7 @@ var _ = require('lodash');
 var App = React.createClass({
   getInitialState() {
     return {
-      interface: _.assign({}, InterfaceStore.getData())
+      interface: InterfaceStore.getData()
     };
   },
 
@@ -20,7 +20,7 @@ var App = React.createClass({
   },
 
   updateInterface(interfaceAtom) {
-    this.setState({ interface: _.assign({}, interfaceAtom) });
+    this.setState({ interface: interfaceAtom });
   },
 
   render() {

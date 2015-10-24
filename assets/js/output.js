@@ -16,7 +16,7 @@ var App = React.createClass({
 
   getInitialState: function getInitialState() {
     return {
-      'interface': _.assign({}, InterfaceStore.getData())
+      'interface': InterfaceStore.getData()
     };
   },
 
@@ -25,7 +25,7 @@ var App = React.createClass({
   },
 
   updateInterface: function updateInterface(interfaceAtom) {
-    this.setState({ 'interface': _.assign({}, interfaceAtom) });
+    this.setState({ 'interface': interfaceAtom });
   },
 
   render: function render() {
@@ -147,6 +147,12 @@ var SectionAir = React.createClass({
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (this.props['interface'].sections.air.complete === true && prevProps['interface'].sections.air.complete === false) {
+      setTimeout(function () {
+        InterfaceStore.setActive(null);
+      }, 1000);
+    }
+
     if (!this.refs.input) {
       return;
     }
@@ -227,6 +233,12 @@ var SectionEarth = React.createClass({
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (this.props['interface'].sections.earth.complete === true && prevProps['interface'].sections.earth.complete === false) {
+      setTimeout(function () {
+        InterfaceStore.setActive(null);
+      }, 1000);
+    }
+
     if (!this.refs.input) {
       return;
     }
@@ -307,6 +319,12 @@ var SectionFire = React.createClass({
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (this.props['interface'].sections.fire.complete === true && prevProps['interface'].sections.fire.complete === false) {
+      setTimeout(function () {
+        InterfaceStore.setActive(null);
+      }, 1000);
+    }
+
     if (!this.refs.input) {
       return;
     }
@@ -387,6 +405,12 @@ var SectionWater = React.createClass({
   },
 
   componentDidUpdate: function componentDidUpdate(prevProps) {
+    if (this.props['interface'].sections.water.complete === true && prevProps['interface'].sections.water.complete === false) {
+      setTimeout(function () {
+        InterfaceStore.setActive(null);
+      }, 1000);
+    }
+
     if (!this.refs.input) {
       return;
     }
@@ -466,6 +490,7 @@ window.addEventListener('DOMContentLoaded', function () {
 'use strict';
 
 var eventemitter2 = require('eventemitter2').EventEmitter2;
+var _ = require('lodash');
 
 var _interface = {
   active: null,
@@ -498,7 +523,7 @@ var InterfaceStore = {
   },
 
   getData: function getData() {
-    return _interface;
+    return _.cloneDeep(_interface);
   },
 
   set: function set(key, value) {
@@ -535,7 +560,7 @@ var InterfaceStore = {
 
 module.exports = InterfaceStore;
 
-},{"eventemitter2":10}],9:[function(require,module,exports){
+},{"eventemitter2":10,"lodash":11}],9:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};

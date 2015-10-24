@@ -1,4 +1,5 @@
 var eventemitter2 = require('eventemitter2').EventEmitter2;
+var _ = require('lodash');
 
 var _interface = {
   active: null,
@@ -31,7 +32,7 @@ var InterfaceStore = {
   },
 
   getData() {
-    return _interface;
+    return _.cloneDeep(_interface);
   },
 
   set(key, value) {

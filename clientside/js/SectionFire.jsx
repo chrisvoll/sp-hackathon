@@ -8,6 +8,12 @@ var SectionFire = React.createClass({
   },
 
   componentDidUpdate(prevProps) {
+    if (this.props.interface.sections.fire.complete === true && prevProps.interface.sections.fire.complete === false) {
+      setTimeout(function() {
+        InterfaceStore.setActive(null);
+      }, 1000);
+    }
+
     if (!this.refs.input) {
       return;
     }

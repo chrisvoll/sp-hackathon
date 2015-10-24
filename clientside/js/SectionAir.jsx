@@ -8,6 +8,12 @@ var SectionAir = React.createClass({
   },
 
   componentDidUpdate(prevProps) {
+    if (this.props.interface.sections.air.complete === true && prevProps.interface.sections.air.complete === false) {
+      setTimeout(function() {
+        InterfaceStore.setActive(null);
+      }, 1000);
+    }
+
     if (!this.refs.input) {
       return;
     }
